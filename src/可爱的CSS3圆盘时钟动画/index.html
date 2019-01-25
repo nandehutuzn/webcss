@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>可爱的CSS3圆盘时钟动画</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style id="css">
+        #timeList {
+            height: 200;
+            position: relative;
+            list-style-type: none;
+            left: 5px;
+            top: 6px;
+        }
+        #timeList li {
+            width: 2px;
+            height: 6px;
+            background: rgba(63, 59, 59, 0.3);
+            position: absolute;
+            left: 99px;
+            top: 0px;
+            transform-origin: center 100px;
+        }
+        #timeList li:nth-of-type(5n+1) {
+            height: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="t2">
+        <div class="t3">
+            <div class="t4">
+                <ul id="timeList"></ul>
+                <i class="hour hour3">3</i>
+                <i class="hour hour6">6</i>
+                <i class="hour hour9">9</i>
+                <i class="hour hour12">12</i>
+
+                <div id="miao"></div>
+                <div id="fen"></div>
+                <div id="shi"></div>
+                <div id="point"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+        //先添加时钟刻度
+        var oList = document.getElementById('timeList');
+        var oCss = document.getElementById('css');
+
+        var aLi = '';
+        var sCss = '';
+        for(var i=0; i<60; i++){
+            sCss += '#timeList li:nth-of-type(' + (i+1) + '){transform: rotate(' + i*6 +'deg);}';
+            aLi += '<li></li>';
+        }
+
+        oList.innerHTML += aLi;
+        oCss.innerHTML += sCss;
+
+        // 设置当前时间
+        var miao = document.getElementById('miao');
+        var fen = document.getElementById('fen');
+        var shi = document.getElementById('shi');
+
+        var clock = setInterval(function(){
+            var nowDate = new Date(); // 每次读取当前时间
+            var hour = nowDate.getHours();
+            var minute = nowDate.getMinutes();
+            var second = nowDate.getSeconds();
+
+            var circleHour = hour % 12 * 30;
+            shi.style.transform = 'rotate(' + circleHour + 'deg)'; //读取到的时间为24小时制，转换为12小时
+            fen.style.transform = 'rotate(' + minute * 6 + 'deg)';
+            miao.style.transform = 'rotate(' + second * 6 + 'deg)';
+        }, 1000);
+    </script>
+</body>
+</html>
