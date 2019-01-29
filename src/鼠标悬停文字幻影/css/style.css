@@ -1,0 +1,56 @@
+.demo {
+    padding: 20px 0;
+}
+.row{
+    padding: 10px;
+}
+.col-sm-3{
+    padding: 20px;
+}
+.link {
+    color: rgba(50, 79, 158, 0.5);
+    font-family: 'Courgette', cursive;
+    font-size: 30px;
+    line-height: 25px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: all 0.5s;
+    text-decoration: none;
+}
+.font-other{
+    font-family: "Microsoft YaHei","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif;
+}
+.link:hover{color: transparent; }
+.link::before, .link::after{
+    content: attr(data-hover);
+    /* white-space: nowrap 段落中的文本，不进行换行 */
+    white-space: nowrap;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s;
+}
+.link::after{
+    color: #c22828;
+    opacity: 0;
+    left: -10px;
+}
+.link:hover::before{
+    left: 15px;
+    opacity: 0;
+}
+.link:hover::after{
+    left: 0;
+    opacity: 1;
+    text-decoration: underline;
+    transition-delay: 0.1s;
+}
+@media only screen and (max-width: 990px){
+    .link span{font-size: 20px;}
+}
+@media only screen and (max-width: 767px){
+    .link{margin: 0 0 30px;}
+}
