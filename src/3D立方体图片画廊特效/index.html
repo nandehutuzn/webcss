@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D立方体图片画廊特效</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="htmleaf-container">
+        <h1>3D Cube Image Gallery</h1>
+        <div class="cube-container">
+            <div class="cube initial-position">
+                <img src="images/1.jpg" class="cube-face-image image-1">
+                <img src="images/2.jpg" class="cube-face-image image-2">
+                <img src="images/3.jpg" class="cube-face-image image-3">
+                <img src="images/4.jpg" class="cube-face-image image-4">
+                <img src="images/5.jpg" class="cube-face-image image-5">
+                <img src="images/6.jpg" class="cube-face-image image-6">
+            </div>
+        </div>
+        <h2>点击下面的图片来旋转立方体</h2>
+        <div class="image-buttons">
+            <input type="image" class="show-image-1" src="images/1.jpg"/>
+            <input type="image" class="show-image-2" src="images/2.jpg"/>
+            <input type="image" class="show-image-3" src="images/3.jpg"/>
+            <input type="image" class="show-image-4" src="images/4.jpg"/>
+            <input type="image" class="show-image-5" src="images/5.jpg"/>
+            <input type="image" class="show-image-6" src="images/6.jpg"/>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        window.addEventListener("DOMContentLoaded", function(){
+            var cube = document.querySelector(".cube"),
+                imageButtons = document.querySelector(".image-buttons");
+            var cubeImageClass = cube.classList[1];
+
+            imageButtons.addEventListener('click', function (e) {
+                var targetNode = e.target.nodeName,
+                    targetClass = e.target.className;
+                
+                if(targetNode === 'INPUT' && targetClass !== cubeImageClass){
+                    console.log("Show Image: " + targetClass.charAt(11));
+
+                    cube.classList.remove(cubeImageClass);
+                    cube.classList.add(targetClass);
+
+                    cubeImageClass = targetClass;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
